@@ -1,0 +1,19 @@
+# В csv-файле (разделитель - точка с запятой, кавычки не используются) содержится анонимизированная информация о 
+# зарплатах сотрудников в различных компаниях. В первом столбце записано название компании, а во втором - зарплата. 
+# Поменяйте местами первый и второй столбцы, по-прежнему разделяя значения в ячейках одной строки точкой с запятой. 
+# Сохраняйте порядок строк.
+# csv-файл доступен по ссылке: https://stepik.org/media/attachments/lesson/258922/input.csv
+
+file = open('D:\\Temp\\PythonProject\\input.csv', 'r', encoding='utf8')
+file2 = open('D:\\Temp\\PythonProject\\output.csv', 'w', encoding='utf8')
+
+
+for row in file:
+    list = row.split(';')
+    a = list[0]
+    b = int(list[1])
+    file2.write(str(b) + ';' + a)
+    file2.write('\n')
+
+file.close()
+file2.close()

@@ -1,0 +1,34 @@
+# В csv-файле (разделитель - точка с запятой, кавычки не используются) содержится анонимизированная информация о зарплатах
+# сотрудников в различных компаниях. В первом столбце записано название компании, а во втором - зарплата. Упорядочите 
+# компании по возрастанию средней зарплаты. В случае одинаковых средних зарплат в нескольких компаниях их следует упорядочить
+# по алфавиту.
+# Названия компаний следует выводить по одному в строке.
+# Совет: используйте словарь, где ключом будет служить название компании, а в качестве значения будет храниться суммарная 
+# зарплата и количество сотрудников.
+# csv-файл доступен по ссылке: https://stepik.org/media/attachments/lesson/258922/input.csv
+
+
+file = open('D:\\Temp\\PythonProject\\input.csv', 'r', encoding='utf8')
+
+parse_list = {}
+
+for row in file:
+    value = row.split(';')
+    if value[0] not in parse_list:
+        parse_list[value[0]] = (int(value[1]), 1)
+    else:
+        new_val_company = parse_list[value[0]][0] + int(value[1])
+        new_val_employees = parse_list[value[0]][1] + 1
+        parse_list[value[0]] = (new_val_company, new_val_employees)
+
+
+tot_list = list()
+for key, val in parse_list.items():
+    tot_list.append(tuple((key, val[0] / val[1])))
+
+
+b = sorted(tot_list,  key=lambda x: (x[1]))
+for c in b:
+    print(c)
+
+file.close()
